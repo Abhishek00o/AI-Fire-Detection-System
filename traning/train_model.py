@@ -54,7 +54,7 @@ model.compile(
 model.fit(
     train_data,
     validation_data=val_data,
-    epochs=5
+    epochs=15
 )
 
 # Save model
