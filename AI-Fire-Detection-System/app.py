@@ -1,12 +1,23 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2868
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+import streamlit as st
+import cv2
 
-\f0\fs24 \cf0 import streamlit as st\
-\
-st.title("\uc0\u55357 \u56613  AI Fire Detection System")\
-\
-st.write("Real-time Fire Detection using Computer Vision and TensorFlow Lite")}
+st.title("🔥 AI Fire Detection System")
+
+run = st.checkbox("Start Camera")
+
+FRAME_WINDOW = st.image([])
+
+camera = cv2.VideoCapture(0)
+
+while run:
+    ret, frame = camera.read()
+
+    if not ret:
+        st.write("Camera Error")
+        break
+
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    FRAME_WINDOW.image(frame)
+
+camera.release()
